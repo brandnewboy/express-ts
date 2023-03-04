@@ -1,0 +1,24 @@
+{
+  "name": "project-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only ./app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.14.6",
+    "@types/pino": "^7.0.5",
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2",
+    "pino": "^8.11.0",
+    "pino-pretty": "^9.4.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5"
+  }
+}
