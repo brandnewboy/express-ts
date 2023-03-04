@@ -1,33 +1,8 @@
 import { Router } from 'express'
+import { userController } from '../controller/user'
 const router = Router()
 
-router.get('/list', (req, res) => {
-  res.json([
-    {
-      name: '张利',
-      age: '20'
-    },
-    {
-      name: '方新贤',
-      age: '20'
-    },
-    {
-      name: '邢子枫',
-      age: '20'
-    },
-    {
-      name: '王波',
-      age: '20'
-    },
-    {
-      name: '姚枫',
-      age: '20'
-    },
-    {
-      name: '赵昕',
-      age: '20'
-    }
-  ])
-})
+router.get('/list', async (req, res) => res.json(await userController.getUserList()))
+router.post('/login', async (req, res) => res.json(await userController.userLogin()))
 
 export const userRouter = router

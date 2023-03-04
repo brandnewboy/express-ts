@@ -1,5 +1,7 @@
 import { sysConfig } from './sys'
+import { dbConfig } from './mysql'
 
 export default {
-  sysConfig
+  sysConfig,
+  dbConfig
 }
