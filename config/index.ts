@@ -1,7 +1,2 @@
-import { sysConfig } from './sys'
-import { dbConfig } from './mysql'
-
-export default {
-  sysConfig,
-  dbConfig
-}
+export { sysConfig } from './sys'
+export { dbConfig } from './mysql'

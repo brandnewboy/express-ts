@@ -1,7 +1,7 @@
-import config from '../config'
+import { dbConfig } from '../config'
 import mysql from 'mysql'
 
-const connection = mysql.createConnection(config.dbConfig)
+const connection = mysql.createConnection(dbConfig)
 
 connection.connect()
 

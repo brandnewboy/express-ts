@@ -1,4 +1,3 @@
-import { RequestHandler } from 'express'
 import { getUserList as userList } from '../db/user'
 
 export const userController = {
