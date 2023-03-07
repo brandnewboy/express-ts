@@ -1,7 +1,6 @@
 import express from 'express'
 import { matchRoutes } from './router'
 import { recordLogger, logger, handle404 } from './utils'
-
 import { sysConfig } from './config'
 
 const app = express()

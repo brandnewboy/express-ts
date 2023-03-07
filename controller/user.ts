@@ -1,4 +1,5 @@
 import userDB from '../db/user'
+import { Result } from '../res/result'
 import { UserController } from '../types/user'
 import { generateToken, MD5 } from '../utils'
 
@@ -15,11 +16,16 @@ export const userController: UserController = {
 
     const result = await userDB.getUserInfo({ username, password })
     if (!result || result.length === 0) {
-      res.json({ msg: '用户不存在' })
+      res.json(Result.error('用户不存在'))
     }
 
-    generateToken({ username, password, realname: result[0].realname })
-    res.json({ msg: '登录成功', realname: result[0].realname })
+    // 登录成功
+    const token = generateToken({
+      username,
+      password,
+      realname: result[0].realname
+    })
+    res.json(Result.ok<string>('登录成功', token))
   },
 
   /**

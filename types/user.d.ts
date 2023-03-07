@@ -10,3 +10,7 @@ export interface UserController {
   getUserList: MiddleWareProp
   test: MiddleWareProp
 }
+
+export interface UserLoginRes {
+  token: string
+}
