@@ -3,7 +3,7 @@ import { Code, CodeMsg } from './code'
 /**
  * 统一响应结果
  */
-export class Result<T = unknown> {
+export class Result<T> {
   public code: number
   public msg: string
   public data?: T
@@ -18,12 +18,12 @@ export class Result<T = unknown> {
     this.msg = arg2
   }
 
-  public static ok(msg?: string): Result
-  public static ok<T>(msg?: string, data?: T): Result
-  public static ok<T = any>(arg1?: string, arg2?: T) {
+  public static ok(msg?: string): Result<null>
+  public static ok<R>(msg?: string, data?: R): Result<R>
+  public static ok<R = unknown>(arg1?: string, arg2?: R) {
     const res = arg2
-      ? new Result<T>(Code.success, CodeMsg.success, arg2)
-      : new Result<T>(Code.success, CodeMsg.success)
+      ? new Result<R>(Code.success, CodeMsg.success, arg2)
+      : new Result<R>(Code.success, CodeMsg.success)
     if (arg1) res.msg = arg1
     return res
   }

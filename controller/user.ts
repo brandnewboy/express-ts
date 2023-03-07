@@ -25,7 +25,7 @@ export const userController: UserController = {
       password,
       realname: result[0].realname
     })
-    res.json(Result.ok<string>('登录成功', token))
+    res.json(Result.ok<{ token: string }>('登录成功', { token }))
   },
 
   /**
