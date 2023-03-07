@@ -29,7 +29,8 @@ export class Result<T> {
   }
 
   public static error(msg?: string) {
-    const res = new Result(Code.error, CodeMsg.error)
+    const res = new Result<null>(Code.error, CodeMsg.error)
     if (msg) res.msg = msg
+    return res
   }
 }
