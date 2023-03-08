@@ -13,10 +13,10 @@ export const userController: UserController = {
   async userLogin(req, res, next) {
     const { username, password: originPassword } = req.body
     const password = MD5(originPassword)
-
     const result = await userDB.getUserInfo({ username, password })
     if (!result || result.length === 0) {
       res.json(Result.error('用户不存在'))
+      return
     }
 
     // 登录成功
@@ -26,6 +26,7 @@ export const userController: UserController = {
       realname: result[0].realname
     })
     res.json(Result.ok<{ token: string }>('登录成功', { token }))
+    return
   },
 
   /**
@@ -36,7 +37,7 @@ export const userController: UserController = {
    */
   async getUserList(req, res, next) {
     const data = await userDB.getUserList()
-    res.json({ msg: '请求成功', data })
+    res.json(Result.ok<typeof data>('请求成功', data))
   },
 
   /**

@@ -1,5 +1,6 @@
 import { UserList } from '../types/db'
 import { UserLoginForm } from '../types/user'
+import { logger } from '../utils'
 import { runSQL, escape } from './mysql'
 
 /**
@@ -26,6 +27,7 @@ const getUserList = async () => {
   SELECT * FROM users
   `
   const data = await runSQL<UserList>(sql)
+  logger.info('getUserList--result:', data)
   return data
 }
 

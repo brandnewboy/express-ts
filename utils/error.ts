@@ -1,5 +1,6 @@
 import { Express } from 'express'
 import createError, { HttpError } from 'http-errors'
+import { Result } from '../res/result'
 
 /**
  * 捕获404并进行处理
@@ -13,10 +14,7 @@ export const handle404 = (app: Express) => {
     res.locals.error = req.app.get('env') === 'development' ? err : {}
 
     // render the error page
-    res.status(err.status || 500)
-    res.setHeader('Content-Type', 'text/html')
-    res.send(`
-      <h1>404 Not Found</h1>
-  `)
+    res.status(404)
+    res.json(Result.error('Your url or method is error!', 404))
   })
 }
