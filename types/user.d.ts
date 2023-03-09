@@ -1,3 +1,4 @@
+import { User } from './db'
 import { MiddleWareProp } from './middleware'
 
 export interface UserLoginForm {
@@ -14,3 +15,5 @@ export interface UserController {
 export interface UserLoginRes {
   token: string
 }
+
+export type SearchUserListParam = Partial<Omit<User, 'password' | 'state'>>

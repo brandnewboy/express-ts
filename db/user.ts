@@ -1,6 +1,6 @@
 import { UserList } from '../types/db'
-import { UserLoginForm } from '../types/user'
-import { logger } from '../utils'
+import { SearchUserListParam, UserLoginForm } from '../types/user'
+import { getCondition } from '../utils/sql'
 import { runSQL, escape } from './mysql'
 
 /**
@@ -14,24 +14,23 @@ const getUserInfo = async ({ username, password }: UserLoginForm) => {
   FROM users
   WHERE username=${escape(username)} AND password=${escape(password)}
   `
-  const data = await runSQL<UserList>(sql)
-  return data
+  return await runSQL<UserList>(sql)
 }
 
 /**
  * 获取用户列表
  * @returns 用户列表
  */
-const getUserList = async () => {
+const getUserList = async (param: SearchUserListParam) => {
+  const condition = getCondition<SearchUserListParam>(param)
   const sql = `
-  SELECT * FROM users
+  SELECT id, username, realname FROM users
+  WHERE ${condition}
   `
-  const data = await runSQL<UserList>(sql)
-  logger.info('getUserList--result:', data)
-  return data
+  return await runSQL<UserList>(sql)
 }
 
-export default {
+export const userDB = {
   getUserList,
   getUserInfo
 }

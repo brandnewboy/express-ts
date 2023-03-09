@@ -16,23 +16,18 @@ export class Result<T> {
     this.msg = arg2
   }
 
-  public static ok(msg?: string): Result<null>
-  public static ok<R>(msg?: string, data?: R): Result<R>
-  public static ok<R = unknown>(
-    arg1?: string,
-    arg2?: R
-  ): Result<null> | Result<R> {
-    const res = arg2
-      ? new Result<R>(Code.success, CodeMsg.success, arg2)
+  public static ok(): Result<null>
+  public static ok<R>(data: R): Result<R>
+  public static ok<R = any>(data?: R): Result<null> | Result<R> {
+    return data
+      ? new Result<R>(Code.success, CodeMsg.success, data)
       : new Result<R>(Code.success, CodeMsg.success)
-    if (arg1) res.msg = arg1
-    return res
   }
 
   public static error(msg: string): Result<null>
   public static error(code: number): Result<null>
-  public static error(msg?: string, code?: number): Result<null>
-  public static error(arg1?: string | number, arg2?: number) {
+  public static error(msg: string, code: number): Result<null>
+  public static error(arg1: string | number, arg2?: number) {
     const res =
       typeof arg1 === 'string'
         ? new Result<null>(Code.error, arg1)

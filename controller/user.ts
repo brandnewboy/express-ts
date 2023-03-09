@@ -1,6 +1,7 @@
-import userDB from '../db/user'
+import { userDB } from '../db/user'
 import { Result } from '../res/result'
-import { UserController } from '../types/user'
+import { UserList } from '../types/db'
+import { UserController, UserLoginRes } from '../types/user'
 import { generateToken, MD5 } from '../utils'
 
 export const userController: UserController = {
@@ -25,7 +26,7 @@ export const userController: UserController = {
       password,
       realname: result[0].realname
     })
-    res.json(Result.ok<{ token: string }>('登录成功', { token }))
+    res.json(Result.ok<UserLoginRes>({ token }))
     return
   },
 
@@ -36,8 +37,9 @@ export const userController: UserController = {
    * @param next
    */
   async getUserList(req, res, next) {
-    const data = await userDB.getUserList()
-    res.json(Result.ok<typeof data>('请求成功', data))
+    const body = req.body
+    const data = await userDB.getUserList(body)
+    res.json(Result.ok<UserList>(data))
   },
 
   /**
