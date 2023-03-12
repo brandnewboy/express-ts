@@ -9,11 +9,12 @@ export interface User {
 export type UserList = Partial<Omit<User, 'password' | 'state'>>[]
 
 export interface Blog {
-  id: number
+  id: string
   title: string
   content: string
   createtime: number
   author: string
+  desc: string
 }
 
 export type BlogList = Blog[]
