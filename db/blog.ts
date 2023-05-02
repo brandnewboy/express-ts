@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 import { SearchBlogParam } from '../types/blog'
-import { Blog, BlogList } from '../types/db'
+import { Blog, BlogList, SQLInsertRes } from '../types/db'
 import { getCondition } from '../utils/sql'
 import { escape, runSQL } from './mysql'
 
@@ -30,16 +30,7 @@ export const addBlog = async (param: Blog) => {
   )}, ${escape(author || '未知')}, ${escape(desc)})
   `
 
-  return await runSQL<{
-    fieldCount: number
-    affectedRows: number
-    insertId: number
-    serverStatus: number
-    warningCount: number
-    message: string
-    protocol41: boolean
-    changedRows: number
-  }>(sql)
+  return await runSQL<SQLInsertRes>(sql)
 }
 
 export const blogDB = {
