@@ -14,8 +14,6 @@ export const blogController: BlogController = {
   async addBlog(req, res, next) {
     const body = req.body
     const result = await blogDB.addBlog(body)
-    res.json(
-      Result.ok<{ success: boolean }>({ success: result.affectedRows > 0 })
-    )
+    res.json(Result.ok())
   }
 }
