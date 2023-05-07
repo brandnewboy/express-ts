@@ -9,6 +9,14 @@ export const generateToken = (userInfo: any) => {
   return token
 }
 
-export const jwtAuth = expressjwt({ secret: sysConfig.SECRET_KEY, algorithms: ['HS256'] }).unless({
-  path: ['/api/v1/user/test', '/api/v1/user/refresh-token', '/api/v1/user/login']
+export const jwtAuth = expressjwt({
+  secret: sysConfig.SECRET_KEY,
+  algorithms: ['HS256']
+}).unless({
+  path: [
+    '/api/v1/user/test',
+    '/api/v1/user/refresh-token',
+    '/api/v1/user/login',
+    '/api/v1/file/upload'
+  ]
 })
