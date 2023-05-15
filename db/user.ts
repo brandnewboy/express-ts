@@ -12,7 +12,7 @@ const getUserInfo = async ({ username, password }: UserLoginForm) => {
   const sql = `
   SELECT realname
   FROM users
-  WHERE username=${escape(username)} AND password=${escape(password)}
+  WHERE username='${username}' AND password=${escape(password)}
   `
   return await runSQL<UserList>(sql)
 }

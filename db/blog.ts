@@ -11,12 +11,15 @@ import { escape, runSQL } from './mysql'
  */
 export const getBlogList = async (param: SearchBlogParam) => {
   const condition = getCondition<SearchBlogParam>(param)
+  // ${condition}
+  // id = ${param.id} AND title = ${param.title} AND content = ${param.content} AND = createtime = ${param.createtime}
   const sql = `
   SELECT id, title, content, createtime, author
   FROM blogs
   WHERE ${condition}
   ORDER BY createtime DESC
   `
+
   return await runSQL<BlogList>(sql)
 }
 

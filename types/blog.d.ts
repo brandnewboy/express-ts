@@ -6,4 +6,4 @@ export interface BlogController {
   addBlog: MiddleWareProp
 }
 
-export type SearchBlogParam = Partial<Blog>
+export type SearchBlogParam = Partial<Blog> & { username?: string }

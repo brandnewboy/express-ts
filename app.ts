@@ -10,7 +10,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/file/upload', express.static(path.resolve('./file/upload-test'))) // 静态资源
+app.use('/file/upload', express.static(path.resolve('./file/upload-test'))) // 配置静态资源
 
 recordLogger(app) // 记录访问日志
 matchRoutes(app) // 匹配路由

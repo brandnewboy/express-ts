@@ -10,6 +10,7 @@ export const getCondition = <T extends object>(param: T) => {
   return Object.keys(param).reduce<string>((res, key, index, arr) => {
     const value = Utils.isValidKey(key, param) && param[key]
     if (value) {
+      // escape(value)
       res += ` AND ${key}=${escape(value)}`
     }
     return res
